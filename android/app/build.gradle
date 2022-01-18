@@ -194,6 +194,13 @@ dependencies {
     implementation "com.facebook.react:react-native:+"  // From node_modules
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+    implementation 'com.facebook.android:facebook-android-sdk:latest.release'  //added for fb login
+    // implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'  // added for ggle 
+
+
+    // from other docs added following lines for ggle login
+    implementation 'com.google.android.gms:play-services-auth:20.0.0'
+    implementation "androidx.browser:browser:1.2.0"
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.fbjni'
@@ -225,3 +232,4 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
+// apply plugin: 'com.google.gms.google-services' // added for ggle 

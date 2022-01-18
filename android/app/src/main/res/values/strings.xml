@@ -1,3 +1,12 @@
 <resources>
+<!-- added lines for facebook -->
+    <string name="facebook_app_id">670611433972430</string>
+    <string name="fb_login_protocol_scheme">fb670611433972430</string>
+<!-- till here -->
+
+<!-- added lines for google login  -->
+    <string name="server_client_id">171222512122-t35kqp5og1r5av61evan7rc9g1so0gv3.apps.googleusercontent.com</string>
+<!-- till here  -->
+
     <string name="app_name">Geekay</string>
 </resources>

@@ -1,27 +1,35 @@
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import React, {useEffect, useState} from 'react';
-import {View, Text, Modal, TouchableOpacity, Image, ActivityIndicator} from 'react-native';
-import WrapperContainer from '../../Components/WrapperContainer';
-import HeaderComp from '../../Components/HeaderComp';
-import styles from './styles';
-import {useSelector} from 'react-redux';
 import {
-  moderateScale,
-  moderateScaleVertical,
-} from '../../styles/responsiveSize';
+  ActivityIndicator,
+  Image,
+  Modal,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import {LoginManager} from 'react-native-fbsdk';
+import {useSelector} from 'react-redux';
+import HeaderComp from '../../Components/HeaderComp';
+import WrapperContainer from '../../Components/WrapperContainer';
 import imagePath from '../../constants/imagePath';
 import navigationStrings from '../../constants/navigationStrings';
 import actions from '../../redux/actions';
 import colors from '../../styles/colors';
+import {
+  moderateScale,
+  moderateScaleVertical,
+} from '../../styles/responsiveSize';
+import styles from './styles';
 
 const ProfileScreen = ({navigation}) => {
-
-   const ProfileData = useSelector(state => state.auth.userData);
-    const [isLoading, setIsLoading] = useState(true)
-    const [modal, setModal] = useState(false);
+  const ProfileData = useSelector(state => state.auth.userData);
+  const [isLoading, setIsLoading] = useState(true);
+  const [modal, setModal] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
-        setIsLoading(false)
+      setIsLoading(false);
     }, 1000);
   }, []);
 
@@ -29,20 +37,28 @@ const ProfileScreen = ({navigation}) => {
     setModal(!modal);
   };
 
+  const load = () => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  };
+
   const OnLogout = () => {
-    setIsLoading(true)
+    // setIsLoading(true);
     actions.logout();
-    setIsLoading(false)
+    GoogleSignin.signOut();
+    LoginManager.logOut();
+    // load();
   };
 
   if (isLoading) {
-    return(
-      <View style={{flex:1, justifyContent:'center'}} >
+    return (
+      <View style={{flex: 1, justifyContent: 'center'}}>
         <ActivityIndicator size="large" color={colors.blue} />
       </View>
-    )
+    );
   }
- 
+
   return (
     <WrapperContainer>
       <View style={styles.container}>
@@ -104,9 +120,17 @@ const ProfileScreen = ({navigation}) => {
                 style={styles.lowerSectionIconStyle}
                 source={imagePath.ic_phone}
               />
-              <Text style={styles.lowerSectionTextStyle}>
-                {ProfileData?.phone_code} {ProfileData?.phone}
-              </Text>
+              <View>
+                {!!ProfileData?.phone ? (
+                  <Text style={styles.lowerSectionTextStyle}>
+                    {ProfileData?.phone_code} {ProfileData?.phone}
+                  </Text>
+                ) : (
+                  <Text style={styles.lowerSectionTextStyle}>
+                    update Phone Number
+                  </Text>
+                )}
+              </View>
             </View>
 
             <TouchableOpacity
