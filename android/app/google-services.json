@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "481767989620",
+    "project_id": "geekay-e40d5",
+    "storage_bucket": "geekay-e40d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:481767989620:android:40efe06dc1ed4d1b1d8c21",
+        "android_client_info": {
+          "package_name": "com.geekay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "481767989620-lrg540qst5o2hmb7t6rvq4bo126eff90.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAH_0xuLSO6FKaRANKyg4yu5ALxkLsOkZc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "481767989620-lrg540qst5o2hmb7t6rvq4bo126eff90.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

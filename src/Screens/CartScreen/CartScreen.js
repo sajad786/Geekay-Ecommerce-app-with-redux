@@ -20,17 +20,64 @@ import actions from '../../redux/actions';
 
 const CartScreen = ({navigation}) => {
   const [itemPrice, setItemPrice] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [itemId, setItemId] = useState('');
   const cartItemPrices = [];
 
   const data = useSelector(data => data.items.listData);
-  console.log('cartItems in cart component',data);
+  console.log('cartItems in cart component', data);
 
-  const onRemove = (id) =>{
-    actions.deleteItem(id)
-  }
+  // const saveItemNumber = item => {
+  //   if (item.id === data.id) {
+  //     const onSelect = item => {
+  //       setSelectedItem(item);
+  //     };
+  //   }
+  // };
+
+  // const onSelect = item => {
+  //   console.log('itemNumbers to save ', item);
+  //   console.log('general Item id ', data.id);
+  //   console.log('particular item id', itemId);
+
+  //   if (data.id == itemId) {
+  //     setSelectedItem(item);
+  //   }
+  //   return;
+  // };
+
+  const dropDownData = [
+    {id: 1, item: 1},
+    {id: 2, item: 2},
+    {id: 3, item: 3},
+    {id: 4, item: 4},
+    {id: 5, item: 5},
+  ];
+
+  const onRemove = id => {
+    actions.deleteItem(id);
+  };
 
   const cartItems = ({item}) => {
     console.log('here is the dataaaaaaaaaaaaaaaaaaaaaaaaaaaaa', item.id);
+
+    const onSelect = ItemNumber => {
+      // console.log('itemNumbers to save ', ItemNumber);
+      // console.log('general Item id ', data);
+      // console.log('particular item id', item?.id);
+      setSelectedItem(ItemNumber);
+
+      // data.map(data => {
+      //   console.log('===============>>>>>>>>>>>>>>>>>');
+      //   console.log('general Item id ', data?.id);
+      //   console.log('particular item id', item?.id);
+      //   if (data?.id == item?.id) {
+      //     setSelectedItem(ItemNumber);
+      //   }
+      //   return;
+      // });
+    };
+
     return (
       <View
         style={{
@@ -59,7 +106,26 @@ const CartScreen = ({navigation}) => {
               }}
             />
           </View>
-          <TouchableOpacity
+
+          <View>
+            <DropDown
+              ParticularItem={item}
+              cartAllItems={data}
+              onSelect={onSelect}
+              data={dropDownData}
+              value={selectedItem}
+              dropDownStyling={{
+                position: 'absolute',
+                left: 0,
+                bottom: -5,
+                zIndex: 1,
+                height: 100,
+                padding: 0,
+              }}
+            />
+          </View>
+
+          {/* <TouchableOpacity
             activeOpacity={0.7}
             style={{
               flexDirection: 'row',
@@ -67,18 +133,16 @@ const CartScreen = ({navigation}) => {
               alignItems: 'center',
               borderWidth: 0.3,
             }}>
-            <DropDown />
+            
             <Image
               style={{
-                height: moderateScaleVertical(14),
-                width: moderateScale(14),
+                height: moderateScaleVertical(24),
+                width: moderateScale(24),
                 marginLeft: moderateScale(5),
               }}
-              source={{
-                uri: imagePath.ic_arrow_down,
-              }}
+              source={imagePath.Ic_drop_down}
             />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
         <View
           style={{
@@ -101,7 +165,11 @@ const CartScreen = ({navigation}) => {
                 fontFamily: fontFamily.medium,
                 color: colors.lightGrey,
               }}>
-              <Text style={{color: colors.greyText}}>AED</Text>{' '}
+              <Text
+                onPress={() => alert(item.SellingPrice)}
+                style={{color: colors.greyText}}>
+                AED
+              </Text>{' '}
               {item.SellingPrice}
             </Text>
           </View>

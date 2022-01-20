@@ -1,36 +1,126 @@
 //import liraries
-import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-
-const data = [{id:1, item:1},{id:2, item:2},{id:3, item:3},{id:4, item:4}, {id:5, item:5}]
+import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+} from 'react-native';
+import imagePath from '../constants/imagePath';
+import {moderateScale, moderateScaleVertical} from '../styles/responsiveSize';
 
 // create a component
-const DropDown = () => {
-    return (
-      <View style={styles.container}>
-        <TouchableOpacity style={styles.DopDownStyles} activeOpacity={0.7}>
-          <Text>1</Text>
-        </TouchableOpacity>
-        {/* {data.map((val, i)=>{
-               return <Text key={val.id} >{val.item}</Text>
-            })} */}
-      </View>
-    );
+const DropDown = ({
+  cartAllItems,
+  ParticularItem,
+  data = [],
+  value = {},
+  onSelect = () => {},
+  dropDownStyling = {},
+}) => {
+  const [showOption, setShowOption] = useState(false);
+  const [showNumber, setShowNumber] = useState('');
+  console.log('selected value', value);
+
+  const onSelectedItem = val => {
+    setShowOption(false);
+    onSelect(val);
+  };
+
+  const ItemNo = () => {
+    cartAllItems.map(data => {
+      // console.log('>>>>>>>>>>>>>>>>>>>?????????????????????');
+      // console.log('cart all items id', data.id);
+      // console.log('particular item id', ParticularItem?.id);
+      // console.log('value to show', value.item);
+      if (true) {
+        setShowNumber(value.item);
+        console.log('inner');
+        // return value.item;
+      } else {
+        // return `select`;
+        setShowOption('select');
+      }
+    });
+    console.log('number to showwwwwwwwwwwwwww ', showNumber);
+    return showNumber;
+  };
+
+  //  {!!value ? value.item : `select `}
+
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity
+        onPress={() => setShowOption(!showOption)}
+        style={{...dropDownStyling, ...styles.DopDownStyles}}
+        activeOpacity={0.7}>
+        <Text>{!!value ? value.item : `select `} </Text>
+        {/* {true ? (
+          <Text>{!!value ? value.item : `select `} </Text>
+        ) : (
+          <Text>select</Text>
+        )} */}
+        <Image
+          style={[
+            styles.iconStyle,
+            {transform: [{rotate: showOption ? '180deg' : '0deg'}]},
+          ]}
+          source={imagePath.Ic_drop_down}
+        />
+      </TouchableOpacity>
+      {showOption && (
+        <View style={styles.DropDownWrapper}>
+          <ScrollView>
+            {data.map((val, i) => {
+              return (
+                <TouchableOpacity
+                  style={{
+                    ...styles.selectedItemStyle,
+                    backgroundColor: value?.id == val?.id ? 'pink' : 'white',
+                  }}
+                  onPress={() => onSelectedItem(val)}
+                  key={val.id}>
+                  <Text>{val.item}</Text>
+                </TouchableOpacity>
+              );
+            })}
+          </ScrollView>
+        </View>
+      )}
+    </View>
+  );
 };
 
 // define your styles
 const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
+  DopDownStyles: {
+    marginBottom: 2,
+    backgroundColor: 'rgba(0,0,0,0.2)',
+    padding: 8,
+    borderRadius: 6,
+    maxHeight: 42,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
-  DopDownStyles:{
-      // backgroundColor:'rgba(0,0,0,0.2)',
-    //   padding:8,
-    //   borderRadius:6,
-    //   minHeight:42,
-    //   justifyContent:'center',
- }
+  selectedItemStyle: {
+    paddingVertical: 8,
+    paddingHorizontal: 6,
+    borderRadius: 4,
+    marginBottom: 4,
+  },
+  iconStyle: {
+    height: moderateScaleVertical(24),
+    width: moderateScale(24),
+  },
+  DropDownWrapper: {
+    backgroundColor: 'orange',
+    padding: 8,
+    borderRadius: 6,
+    maxHeight: 150,
+  },
 });
 
 //make this component available to the app

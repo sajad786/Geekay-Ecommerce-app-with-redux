@@ -22,6 +22,7 @@ buildscript {
         // in the individual module build.gradle files
 
          classpath 'com.google.gms:google-services:4.3.10' // added  for ggle 
+         classpath 'com.google.gms:google-services:4.3.10' // added for firebase
     }
 }
 
