@@ -16,7 +16,8 @@ import navigationStrings from '../../constants/navigationStrings';
 import actions from '../../redux/actions';
 import {showError} from '../../utils/helperFunction';
 import validation from '../../utils/validation';
-import {
+import notifee from '@notifee/react-native'; 
+import {  
   LoginManager,
   GraphRequest,
   GraphRequestManager,
@@ -51,6 +52,8 @@ const SignUpScreen = ({navigation}) => {
       </View>
     );
   }
+
+
 
   useEffect(() => {
     // GoogleSignin.configure({
@@ -240,6 +243,36 @@ const SignUpScreen = ({navigation}) => {
   //     }
   //   }
   // };
+
+
+
+
+//  for  notifee function
+
+   const PushOtp = async () => {
+    try {
+      // Create a channel
+    const channelId = await notifee.createChannel({
+      id: 'default',
+      name: 'Default Channel',
+    });
+
+    // Display a notification
+    await notifee.displayNotification({
+      title: 'Confirm Otp',
+      body: 'Your confimation otp for geekay app is abcd',
+      android: {
+        channelId,
+        smallIcon: 'name-of-a-small-icon', // optional, defaults to 'ic_launcher'.
+      },
+    });
+    } catch (error) {
+      console.log("error ehilee sending push notifee", error);
+    }
+  }
+
+
+
 
   const OnGoogleLogIn = () => {
     actions.googleLogin();

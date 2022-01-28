@@ -9,6 +9,7 @@ import {
   View,
 } from 'react-native';
 import {LoginManager} from 'react-native-fbsdk';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import {useSelector} from 'react-redux';
 import HeaderComp from '../../Components/HeaderComp';
 import WrapperContainer from '../../Components/WrapperContainer';
@@ -40,7 +41,7 @@ const ProfileScreen = ({navigation}) => {
   const load = () => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 1000);
+    }, 500);
   };
 
   const OnLogout = () => {
@@ -60,6 +61,7 @@ const ProfileScreen = ({navigation}) => {
   }
 
   return (
+    <SafeAreaView style={{flex:1, backgroundColor:colors.blue, paddingBottom:-35}} >
     <WrapperContainer>
       <View style={styles.container}>
         <View style={styles.upperSection}>
@@ -144,6 +146,16 @@ const ProfileScreen = ({navigation}) => {
             </TouchableOpacity>
 
             <TouchableOpacity
+              onPress={() => navigation.navigate(navigationStrings.MAP_SCREEN)}
+              style={styles.lowerSectionItemWrapper}>
+              <Image
+                style={styles.lowerSectionIconStyle}
+                source={imagePath.ic_logout}
+              />
+              <Text style={styles.lowerSectionTextStyle}>Map Screen </Text>
+            </TouchableOpacity>
+           
+            <TouchableOpacity
               onPress={ConfirmLogout}
               style={styles.lowerSectionItemWrapper}>
               <Image
@@ -157,7 +169,7 @@ const ProfileScreen = ({navigation}) => {
 
         {/* Modal screen goes from here  */}
 
-        <Modal
+        {/* <Modal
           transparent={true}
           visible={modal}
           onRequestClose={() => {
@@ -193,9 +205,11 @@ const ProfileScreen = ({navigation}) => {
               </View>
             </View>
           </View>
-        </Modal>
+        </Modal> */}
+
       </View>
     </WrapperContainer>
+    </SafeAreaView>
   );
 };
 

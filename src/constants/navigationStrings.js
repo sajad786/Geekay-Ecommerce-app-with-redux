@@ -8,4 +8,5 @@ export default {
   LOGIN_SCREEN:'login',
   SIGNUP_SCREEN:'signup',
   VERIFYOTP_SCREEN:'verifyOtp',
+  MAP_SCREEN:'mapScreen',
 };

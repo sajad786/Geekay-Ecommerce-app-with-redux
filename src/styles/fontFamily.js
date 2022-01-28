@@ -6,7 +6,7 @@ export default {
   italic: 'Poppins-Italic',
   BarlowBold: 'Barlow-Bold',
   BarlowRegular: 'Barlow-Regular',
-  BarlowSemiBold: 'Barlow-SemiBold',
+  BarlowSemiBold: 'Poppins-Medium',
   BarlowMedium: 'Barlow-Medium',
   BarlowBold: 'Barlow-Bold',
 

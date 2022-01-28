@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import { Dimensions, FlatList, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import { useSelector } from 'react-redux'
 import Carousal from '../../Components/Carousal'
 import Category from '../../Components/Category'
@@ -45,6 +46,7 @@ const HomeScreen = () => {
     }
     return (
       <ScrollView>
+        <SafeAreaView style={{flex:1, backgroundColor:colors.blue, paddingBottom:-35}} >
         <WrapperContainer
           style={{backgroundColor: colors.homeBgc}}
           statusBarColor={colors.blue}>
@@ -55,7 +57,7 @@ const HomeScreen = () => {
               width: '100%',
               marginTop: -1,
             }}>
-            <Carousal />
+            <Carousal />  
           </View>
           <View
             style={{
@@ -88,6 +90,7 @@ const HomeScreen = () => {
             <Category />
           </View>
         </WrapperContainer>
+        </SafeAreaView>
       </ScrollView>
     );
 }

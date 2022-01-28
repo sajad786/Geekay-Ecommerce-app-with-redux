@@ -1,4 +1,12 @@
+#import <Firebase.h> // fiarebase code added 
 #import "AppDelegate.h"
+#import <GoogleMaps/GoogleMaps.h> // added for google maps
+
+//added two lines below
+//#import UIKit
+//#import FacebookCore
+
+
 
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
@@ -27,6 +35,11 @@ static void InitializeFlipper(UIApplication *application) {
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
+[GMSServices provideAPIKey:@"AIzaSyAkLe2EGTa2sVdglxNgSHRAMBlTYljrGgY"]; // add this line using the api key obtained from Google Console
+
+[FIRApp configure];    // firbase code added
+
 #ifdef FB_SONARKIT_ENABLED
   InitializeFlipper(application);
 #endif
@@ -49,6 +62,35 @@ static void InitializeFlipper(UIApplication *application) {
   [self.window makeKeyAndVisible];
   return YES;
 }
+
+//added lines below
+
+//func application(
+//        _ application: UIApplication,
+//        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+//    ) -> Bool {
+//        ApplicationDelegate.shared.application(
+//            application,
+//            didFinishLaunchingWithOptions: launchOptions
+//        )
+//
+//        return true
+//    }
+//
+//    func application(
+//        _ app: UIApplication,
+//        open url: URL,
+//        options: [UIApplication.OpenURLOptionsKey : Any] = [:]
+//    ) -> Bool {
+//        ApplicationDelegate.shared.application(
+//            app,
+//            open: url,
+//            sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+//            annotation: options[UIApplication.OpenURLOptionsKey.annotation]
+//        )
+//    }
+
+// till here
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
 {

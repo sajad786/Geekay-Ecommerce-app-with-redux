@@ -23,9 +23,12 @@ export default styles = StyleSheet.create({
   OuterProfilePicView: {
     flex: 1,
     borderRadius: 15,
+    justifyContent:'center',
+    // alignSelf:'center',
   },
 
   InnerProfilePicView: {
+    alignSelf:'center',
     justifyContent: 'center',
     paddingVertical: moderateScale(15),
     paddingHorizontal: moderateScale(10),
@@ -45,7 +48,7 @@ export default styles = StyleSheet.create({
 
     position: 'absolute',
     top: moderateScaleVertical(50),
-    left: 0,
+    left: 12,
   },
 
   imageStyle: {

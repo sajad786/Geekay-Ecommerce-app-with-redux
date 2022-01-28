@@ -9,5 +9,6 @@ export {default as AddToCartScreen} from './AddToCartScreen/AddToCartScreen';
 export {default as VerifyOtp} from './VerifyOtp/VerifyOtp';
 export {default as LoginScreen} from './LoginScreen/LoginScreen';
 export {default as SignUpScreen} from './SignUpScreen/SignUpScreen';
+export {default as MapScreen} from './MapScreen/MapScreen';
 // export {default as Signup} from './Signup/Signup';
 // export {default as Login} from './Login/Login';

@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   btnTextStyle: {
     color: colors.white,
     fontSize: textScale(16),
-    fontWeigh: '600',
+    fontWeight: '600',
   },
 });
 

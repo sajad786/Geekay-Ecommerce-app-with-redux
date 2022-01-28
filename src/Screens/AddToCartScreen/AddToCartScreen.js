@@ -21,6 +21,8 @@ import {
 } from '../../styles/responsiveSize';
 import styles from './styles';
 import {showError} from '../../utils/helperFunction';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import colors from '../../styles/colors';
 
 const AddToCartScreen = ({route, navigation}) => {
 
@@ -73,6 +75,7 @@ const AddToCartScreen = ({route, navigation}) => {
   }
 
   return (
+    <SafeAreaView style={{flex:1, backgroundColor:colors.blue, paddingBottom:-35}} > 
     <WrapperContainer>
       <Header
         searchIcon={false}
@@ -190,6 +193,7 @@ const AddToCartScreen = ({route, navigation}) => {
         </Modal>
       </ScrollView>
     </WrapperContainer>
+    </SafeAreaView>
   );
 };
 

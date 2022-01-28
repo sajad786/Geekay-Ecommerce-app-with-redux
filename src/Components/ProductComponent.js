@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   offerLabel: {
     backgroundColor: colors.yellow,
     fontSize: textScale(11),
-    fontFamily: fontFamily.BarlowSemiBold,
+    fontFamily: fontFamily.medium,
     color: colors.black,
     paddingVertical: moderateScale(1),
     paddingHorizontal: moderateScale(2),
