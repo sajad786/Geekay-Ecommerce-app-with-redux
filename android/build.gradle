@@ -4,8 +4,8 @@ buildscript {
     ext {
         buildToolsVersion = "30.0.2"
         minSdkVersion = 21
-        compileSdkVersion = 30
-        targetSdkVersion = 30
+        compileSdkVersion = 31 //30
+        targetSdkVersion = 30 //30
         ndkVersion = "21.4.7075529"
     // added below lines for google signin
         supportLibVersion = "27.1.1"

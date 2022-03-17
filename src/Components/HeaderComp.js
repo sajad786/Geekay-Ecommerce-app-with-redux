@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView } from 'react-native';
 import imagePath from '../constants/imagePath';
 import fontFamily from '../styles/fontFamily';
 import {
@@ -9,14 +9,15 @@ import {
 } from '../styles/responsiveSize';
 
 
-const HeaderComp = ({title, titleStyle,iconStyle, navigation}) => {
+const HeaderComp = ({title, titleStyle,iconStyle, navigation, style}) => {
     console.log(title, 'titleeeeeeeeeeeeeeeeeee')
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={{...styles.container, ...style}}>
         <View
           style={{
             flexDirection: 'row',
-            justifyContent: 'flex-start',
+            justifyContent:'space-between',
+            // justifyContent: 'flex-start',
             alignItems: 'center',
           }}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -26,8 +27,9 @@ const HeaderComp = ({title, titleStyle,iconStyle, navigation}) => {
             />
           </TouchableOpacity>
           <Text style={{...styles.textColor, ...titleStyle}}>{title}</Text>
+          <View/>
         </View>
-      </View>
+      </SafeAreaView>
     );
 };
 

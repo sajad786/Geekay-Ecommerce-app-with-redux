@@ -5,12 +5,14 @@ import MapView, {Callout, Marker, PROVIDER_GOOGLE} from 'react-native-maps'; // 
 import styles from './styles';
 import Geolocation from '@react-native-community/geolocation';
 import HeaderComp from '../../Components/HeaderComp';
+import { useTheme } from '@react-navigation/native';
 
 const MapScreen = ({navigation}) => {
   const mapRef = useRef(null);
 
   const [userLat, setUserLat] = useState('');
   const [userLong, setUserLong] = useState('');
+  const theme = useTheme()
 
   // const [state, setState] = useState({
   //   userLat,
@@ -34,6 +36,168 @@ const MapScreen = ({navigation}) => {
       setUserLong(info?.coords?.longitude);
     });
   };
+
+  const mapNightTheme = [
+    {
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#242f3e"
+        }
+      ]
+    },
+    {
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#746855"
+        }
+      ]
+    },
+    {
+      "elementType": "labels.text.stroke",
+      "stylers": [
+        {
+          "color": "#242f3e"
+        }
+      ]
+    },
+    {
+      "featureType": "administrative.locality",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#d59563"
+        }
+      ]
+    },
+    {
+      "featureType": "poi",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#d59563"
+        }
+      ]
+    },
+    {
+      "featureType": "poi.park",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#263c3f"
+        }
+      ]
+    },
+    {
+      "featureType": "poi.park",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#6b9a76"
+        }
+      ]
+    },
+    {
+      "featureType": "road",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#38414e"
+        }
+      ]
+    },
+    {
+      "featureType": "road",
+      "elementType": "geometry.stroke",
+      "stylers": [
+        {
+          "color": "#212a37"
+        }
+      ]
+    },
+    {
+      "featureType": "road",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#9ca5b3"
+        }
+      ]
+    },
+    {
+      "featureType": "road.highway",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#746855"
+        }
+      ]
+    },
+    {
+      "featureType": "road.highway",
+      "elementType": "geometry.stroke",
+      "stylers": [
+        {
+          "color": "#1f2835"
+        }
+      ]
+    },
+    {
+      "featureType": "road.highway",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#f3d19c"
+        }
+      ]
+    },
+    {
+      "featureType": "transit",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#2f3948"
+        }
+      ]
+    },
+    {
+      "featureType": "transit.station",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#d59563"
+        }
+      ]
+    },
+    {
+      "featureType": "water",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#17263c"
+        }
+      ]
+    },
+    {
+      "featureType": "water",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#515c6d"
+        }
+      ]
+    },
+    {
+      "featureType": "water",
+      "elementType": "labels.text.stroke",
+      "stylers": [
+        {
+          "color": "#17263c"
+        }
+      ]
+    }
+  ]
 
   useEffect(() => {
     getCurrentPosition();
@@ -82,6 +246,17 @@ const MapScreen = ({navigation}) => {
     },
   ];
 
+  const standardstyle = [
+    {
+    "featureType": "administrative.land_parcel",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+]
+
   let {width, height} = Dimensions.get('window');
   const ASPECT_RATIO = width / height;
   console.log(ASPECT_RATIO, 'ASPECT_RATIO');
@@ -91,9 +266,11 @@ const MapScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <MapView
+        customMapStyle={theme.dark ? mapNightTheme : standardstyle}
         ref={mapRef}
         provider={PROVIDER_GOOGLE} // remove if not using Google Maps
         showsUserLocation={true}
+        followUserLocation={true}
         zoomEnabled={true}
         zoomControlEnabled={true}
         style={styles.map}
@@ -105,7 +282,10 @@ const MapScreen = ({navigation}) => {
           // latitudeDelta:  LATITUDE_DELTA,    //0.0922,
           // longitudeDelta: LONGITUDE_DELTA //0.0922 * 1.2,
         }}>
-        {/* <HeaderComp navigation={navigation} /> */}
+
+       <View >
+        <HeaderComp style={{position:'absolute', top:60, left:10}}  navigation={navigation} title="Map Screen " />  
+       </View>
         {markers.map((marker, index) => {
           console.log(marker, 'Markers ======');
           return (
